@@ -38,10 +38,10 @@ This project is an integrated invoicing system for service providers, developed 
 1. Clone the repository:
 
    ```bash
-        git clone https://github.com/your-repository.git
+        git clone https://github.com/SmanSayeed/invoice-sheduler-backend
    ```
 
-2. Clone the repository:
+2. Enter the repository and run following commands:
 
    ```bash
         composer install
