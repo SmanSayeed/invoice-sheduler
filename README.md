@@ -24,7 +24,6 @@ This project is an integrated invoicing system for service providers, developed 
 - **Email Functionality**: Send invoices via email with attachments.
 - **Reminder System**: Automatic reminders for overdue invoices.
 - **Multi-format Invoices**: Generate invoices in PDF and other formats.
-- **Localization**: Support for multiple languages (e.g., Bangla and English).
 
 ## Technologies Used
 
