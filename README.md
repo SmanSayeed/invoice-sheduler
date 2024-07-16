@@ -13,7 +13,7 @@ This project is an integrated invoicing system for service providers, developed 
   <img src="screenshots/pdf-ss.png" alt="Client Management" width="100%" height="auto" />
 </P>
 <p align="center">
-  <img src="screenshots/responsive-frontend-design.png" alt="Generate Invoice" width="100%" height="auto" />
+  <img src="screenshots/responsive-frontend-design.png" alt="Generate Invoice" width="400" height="800" />
 </p>
 
 ## Features
