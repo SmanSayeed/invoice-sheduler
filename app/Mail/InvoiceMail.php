@@ -40,11 +40,26 @@ class InvoiceMail extends Mailable
             $this->invoice->due_date = \Carbon\Carbon::parse($this->invoice->due_date);
         }
 
+        // Format Month-Year
+        $monthYear = $this->invoice->invoice_date->format('F-Y');
+
+        // Get Client Name
+        $clientName = $this->invoice->client->name;
+
+        // Get Invoice Number
+        $invoiceNumber = $this->invoice->invoice_number;
+
+        // Build the subject line
+        $subject = sprintf('[%s]-[%s]-[%s]', $monthYear, $clientName, $invoiceNumber);
+
+        $pdfFileName = sprintf('%s-%s-%s.pdf', $monthYear, $clientName, $invoiceNumber);
+
         return $this->view('emails.invoice')
                     ->with(['invoice' => $this->invoice])
-                    ->attachData($this->pdf, 'invoice.pdf', [
+                    ->attachData($this->pdf, $pdfFileName, [
                         'mime' => 'application/pdf',
-                    ])->subject('Your Invoice')
-                    ->to($this->invoice->client->email); ;
+                    ])
+                    ->subject($subject)
+                    ->to($this->invoice->client->email);
     }
 }

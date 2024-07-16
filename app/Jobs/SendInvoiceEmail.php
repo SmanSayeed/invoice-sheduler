@@ -36,7 +36,7 @@ class SendInvoiceEmail implements ShouldQueue
     public function handle()
     {
         $client = $this->invoice->client;
-
+        $invoice = $this->invoice;
         // Generate PDF
         $pdf = PDF::loadView('invoices.pdf', compact('invoice'))->output();
 

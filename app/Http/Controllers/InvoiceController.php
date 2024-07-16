@@ -15,10 +15,19 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 class InvoiceController extends Controller
 {
-    public function invoiceDetails($invoiceId){
-        $invoice = Invoice::with('client', 'items')->findOrFail($invoiceId);
-        return response()->json($invoice);
-    }
+    public function clientInvoices($clientId)
+{
+    $invoices = Invoice::with('items.device')
+        ->where('client_id', $clientId)
+        ->get();
+
+    return response()->json($invoices);
+}
+
+  public function invoiceDetails($invoiceId) {
+    $invoice = Invoice::with(['client', 'items.device'])->findOrFail($invoiceId);
+    return response()->json($invoice);
+}
     public function generate(Request $request)
     {
         // Validate the incoming request
@@ -89,7 +98,7 @@ class InvoiceController extends Controller
             // Commit the transaction
             DB::commit();
 
-            return response()->json($invoice->load('items'));
+            return response()->json($invoice->load('items.device'));
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['error' => $e->getMessage()], 500);
@@ -102,12 +111,8 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::with('client', 'items')->findOrFail($id);
         $invoice->load('items.device');
-
-        // Generate PDF
-        $pdf = Pdf::loadView('invoices.pdf', compact('invoice'))->output();
-
-        // Dispatch the job to send the invoice email
-        Mail::send(new InvoiceMail($invoice, $pdf));
+        
+        SendInvoiceEmail::dispatch($invoice);
 
         return response()->json(['message' => 'Invoice sent successfully']);
     }
