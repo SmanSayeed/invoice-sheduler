@@ -7,9 +7,13 @@ This project is an integrated invoicing system for service providers, developed 
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/email-ss.png" alt="Dashboard" width="600" height="400" />
-  <img src="screenshots/pdf-ss.png" alt="Client Management" width="200" height="200" />
-  <img src="screenshots/responsive-frontend-design.png" alt="Generate Invoice" width="200" height="200" />
+  <img src="screenshots/email-ss.png" alt="Dashboard" width="100%" height="auto" />
+</P>
+<p align="center">
+  <img src="screenshots/pdf-ss.png" alt="Client Management" width="100%" height="auto" />
+</P>
+<p align="center">
+  <img src="screenshots/responsive-frontend-design.png" alt="Generate Invoice" width="100%" height="auto" />
 </p>
 
 ## Features
